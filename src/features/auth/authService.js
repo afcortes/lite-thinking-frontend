@@ -7,7 +7,12 @@ const API_URL = `${process.env.REACT_APP_API_URL + constants.endpoints.auth.base
 const authAPI = axios.create({ baseURL: API_URL });
 
 const register = async (registerData) => {
-    await authAPI.post(constants.endpoints.auth.register, registerData);
+    const response = await authAPI.post(constants.endpoints.auth.register, registerData);
+    const user = parseJwt(response.data.accessToken);
+    if (response.data) {
+        localStorage.setItem(constants.localStorage.user, JSON.stringify(user));
+    }
+    return user;
 }
 
 const login = async (loginData) => {

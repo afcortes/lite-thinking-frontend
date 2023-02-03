@@ -34,9 +34,11 @@ const Login = () => {
     } = useForm({ mode: 'onTouched', resolver: yupResolver(formSchema) });
 
     useEffect(() => {
-        isError && toast.error(message);
+        if (isError) {
+            toast.error(message);
+        }
 
-        if (user) {
+        if (isSuccess || user) {
             toast.success('Login successfull!');
             navigate(`./../${parseJWT(user.token).user.role}`);
         }
@@ -58,7 +60,7 @@ const Login = () => {
             <p>
                 {'you can also '}
                 <Link to='/register'>
-                    Register.
+                    Register!
                 </Link>
             </p>
         </>
