@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,6 +6,13 @@ import {
 } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import './App.css';
+import Login from './pages/Login';
+import TokenGuard from './components/TokenGuard';
+import RoleGuard from './components/RoleGuard';
+import constants from './constants/constants';
+import Admin from './pages/Admin'
+import External from './pages/External';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -16,25 +22,43 @@ function App() {
           <Route
             path='/'
             element= {
-              <h1>root path</h1>
-            }
-          ></Route>
-          <Route
-            path='/admin'
-            element= {
-              <h1>admin</h1>
+              <Navigate to='login'/>
             }
           ></Route>
           <Route
             path='/login'
             element= {
-              <h1>login</h1>
+              <TokenGuard mustBeLogged={false} children={
+                <Login/>
+              }/>
             }
           ></Route>
           <Route 
             path='/register'
             element= {
-              <h1>register</h1>
+              <TokenGuard mustBeLogged={false} children={
+                <Register/>
+              }/>
+            }
+          ></Route>
+          <Route
+            path='/admin'
+            element= {
+              <TokenGuard  children={
+                <RoleGuard role={constants.roles.ADMIN} redirect={'./../login'} children={
+                  <Admin/>
+                }/>
+              }/>
+            }
+          ></Route>
+          <Route
+            path='/external'
+            element= {
+              <TokenGuard children={
+                <RoleGuard role={constants.roles.EXTERNAL} redirect={'./../login'} children={
+                  <External/>
+                }/>
+              }/>
             }
           ></Route>
           <Route
