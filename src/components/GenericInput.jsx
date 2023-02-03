@@ -10,10 +10,10 @@ const GenericInput = ({ register, type='text', errors, value }) => {
     };
 
     return (
-        <>
-            <input { ...register} type={type} placeholder={register.name} value={inputValue} onChange={handleChange}/>
+        <div className="form-group px-3 mb-3">
+            <input className="form-control font-size-larger mb-1" { ...register} type={type} placeholder={register.name} value={inputValue} onChange={handleChange}/>
             { errors && <GenericErrorMessage errors={errors}/>}
-        </>
+        </div>
     )
 }
 

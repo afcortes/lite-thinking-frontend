@@ -8,6 +8,7 @@ import { loginLifeCycle } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 import GenericInput from '../components/GenericInput';
 import * as yup from 'yup';
+import FormHeader from '../components/FormHeader';
 
 const formSchema = yup.object().shape({
     email: yup
@@ -51,23 +52,30 @@ const Login = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(handleLogin)}>
-                <GenericInput register={register('email')} type='email' errors={errors['email']} />
-                <GenericInput register={register('password')} type='password' errors={errors['password']} />
-                <button>Submit</button>
-            </form>
-            <p>
-                {'you can also '}
-                <Link to='/register'>
-                    Register!
-                </Link>
-            </p>
-            <p>
-                {'or can login as '}
-                <Link to='/company-list'>
-                    External!
-                </Link>
-            </p>
+            <div className='card h-50 my-auto login-container'>
+                <FormHeader title={'Login'} />
+                <form onSubmit={handleSubmit(handleLogin)}>
+                    <GenericInput register={register('email')} type='email' errors={errors['email']} />
+                    <GenericInput register={register('password')} type='password' errors={errors['password']} />
+                    <div className='d-flex py-4'>
+                        <button className='btn btn-success mx-auto'>Submit</button>
+                    </div>
+                </form>
+                <div className='d-flex flex-column align-items-center'>
+                    <p>
+                        {'you can also '}
+                        <Link to='/register'>
+                            Register!
+                        </Link>
+                    </p>
+{/*                     <p>
+                        {'or can login as '}
+                        <Link to='/company-list'>
+                            External!
+                        </Link>
+                    </p> */}
+                </div>
+            </div>
         </>
     )
 }

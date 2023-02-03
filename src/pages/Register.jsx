@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import GenericInput from '../components/GenericInput';
 import Spinner from '../components/Spinner';
 import { registerLifeCycle, reset } from '../features/auth/authSlice';
+import FormHeader from '../components/FormHeader';
 
 const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -16,7 +17,7 @@ const formSchema = Yup.object().shape({
     password: Yup.string()
       .required('Please enter a password, it is required'),
     confirmPassword: Yup.string()
-      .required('Please enter a confirm password, it is required')
+      .required('Please confirm your password')
       .oneOf([Yup.ref('password')], 'Passwords do not match'),
 });
 
@@ -58,18 +59,25 @@ const Register = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit(registerHandle)}>
-                <GenericInput register={register('email')} type='email' errors={errors['email']} />
-                <GenericInput register={register('password')} type='password' errors={errors['password']} />
-                <GenericInput register={register('confirmPassword')} type='password' errors={errors['confirmPassword']} />
-                <button>Submit</button>
-            </form>
-            <p>
-                {'Have an account? '}
-                <Link to='/login'>
-                Login!
-                </Link>
-            </p>
+            <div className='card h-60 my-auto login-container'>
+                <FormHeader title={'Register'} />
+                <form onSubmit={handleSubmit(registerHandle)}>
+                    <GenericInput register={register('email')} type='email' errors={errors['email']} />
+                    <GenericInput register={register('password')} type='password' errors={errors['password']} />
+                    <GenericInput register={register('confirmPassword')} type='password' errors={errors['confirmPassword']} />
+                    <div className='d-flex py-4'>
+                        <button className='btn btn-success mx-auto'>Submit</button>
+                    </div>
+                </form>
+                <div className='d-flex flex-column align-items-center'>
+                    <p>
+                        {'Have an account? '}
+                        <Link to='/login'>
+                        Login!
+                        </Link>
+                    </p>
+                </div>
+            </div>
         </>
     );
 };

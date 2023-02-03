@@ -1,7 +1,7 @@
 const GenericErrorMessage = ({errors: {message}}) => {
     return (
         <>
-            <span className="error-message">{message}</span>
+            <span className="text-danger px-2">{message}</span>
         </>
     )
 }
