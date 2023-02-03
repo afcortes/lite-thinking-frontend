@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { toast } from 'react-toastify';
-import { loginLyfeCycle } from '../features/auth/authSlice';
+import { loginLifeCycle } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
 import GenericInput from '../components/GenericInput';
-import parseJWT from './../utils/parseJWT'
 import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
@@ -40,12 +39,12 @@ const Login = () => {
 
         if (isSuccess || user) {
             toast.success('Login successfull!');
-            navigate(`./../${parseJWT(user.token).user.role}`);
+            navigate('./../company-list');
         }
     }, [isError, isSuccess, user, message, navigate, dispatch]);
 
     const handleLogin = (value) => {
-        dispatch(loginLyfeCycle(value));
+        dispatch(loginLifeCycle(value));
     };
 
     if (isLoading) return <Spinner />;
@@ -61,6 +60,12 @@ const Login = () => {
                 {'you can also '}
                 <Link to='/register'>
                     Register!
+                </Link>
+            </p>
+            <p>
+                {'or can login as '}
+                <Link to='/company-list'>
+                    External!
                 </Link>
             </p>
         </>

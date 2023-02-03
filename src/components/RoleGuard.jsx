@@ -1,14 +1,13 @@
-import { Navigate } from 'react-router';
 import { useSelector } from 'react-redux'
 
 import Spinner from './Spinner'
 
-const RoleGuard = ({ role, children, redirect }) => {
+const RoleGuard = ({ role, children }) => {
     const { isLoading, user } = useSelector((state) => state.auth);
     
     if (isLoading) return <Spinner />;
 
-    if (user.user.role !== role) return <Navigate to={redirect} />;
+    if (!user || user.user.role !== role) return <></>;
 
     return <>{children}</>;
 };

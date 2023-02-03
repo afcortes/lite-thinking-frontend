@@ -4,6 +4,12 @@ const constants = {
             base: '/auth',
             register: '/register',
             login: '/login',
+        },
+        company: {
+            base: '/company'
+        },
+        product: {
+            base: '/product',
         }
     },
     localStorage: {

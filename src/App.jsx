@@ -8,11 +8,11 @@ import NotFound from './components/NotFound';
 import './App.css';
 import Login from './pages/Login';
 import TokenGuard from './components/TokenGuard';
-import RoleGuard from './components/RoleGuard';
-import constants from './constants/constants';
-import Admin from './pages/Admin'
-import External from './pages/External';
 import Register from './pages/Register';
+import CompanyList from './pages/CompanyList';
+import CreateCompany from './pages/CreateCompany';
+import EditCompany from './pages/EditCompany';
+import ProductList from './pages/ProductList';
 
 function App() {
   return (
@@ -41,61 +41,35 @@ function App() {
               }/>
             }
           ></Route>
-          <Route
-            path='/admin'
+          <Route 
+            path='/company-list'
             element= {
-              <TokenGuard  children={
-                <RoleGuard role={constants.roles.ADMIN} redirect={'./../login'} children={
-                  <Admin/>
-                }/>
-              }/>
-            }
-          ></Route>
-          <Route
-            path='/external'
-            element= {
-              <TokenGuard children={
-                <RoleGuard role={constants.roles.EXTERNAL} redirect={'./../login'} children={
-                  <External/>
-                }/>
-              }/>
+              <CompanyList/>
             }
           ></Route>
           <Route
             path='/create-company'
             element= {
-              <h1>Create company</h1>
+              <TokenGuard children={
+                <CreateCompany/>
+              }/>
             }
           ></Route>
           <Route
-            path='/edit-company/:companyId'
-            element= {
-              <h1>Edit company</h1>
-            }
+              path='/edit-company/:company_NIT'
+              element= {
+                <TokenGuard children={
+                  <EditCompany/>
+                } />
+              }
           ></Route>
           <Route
-            path='/inventory'
-            element= {
-              <h1>Inventory list</h1>
-            }
-          ></Route>
-          <Route
-            path='/inventory/:inventoryId'
-            element= {
-              <h1>Inventory speciffic</h1>
-            }
-          ></Route>
-          <Route
-            path='/inventory/:inventoryId/product'
-            element= {
-              <h1>Product from an speciffic inventory</h1>
-            }
-          ></Route>
-          <Route
-            path='/inventory/:inventoryId/product/:productId'
-            element= {
-              <h1>speciffic product from an speciffic inventory</h1>
-            }
+              path='/company/:company_NIT/inventory'
+              element= {
+                <TokenGuard children={
+                  <ProductList/>
+                } />
+              }
           ></Route>
           <Route path='/not-found' element={<NotFound />} />
           <Route path='/*' element={<Navigate to='/not-found'/>} />

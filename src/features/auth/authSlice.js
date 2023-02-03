@@ -13,7 +13,7 @@ const initialState = {
   message: ''
 }
 
-const registerLyfeCycle = createAsyncThunk(
+const registerLifeCycle = createAsyncThunk(
     `${constants.redux.actions.auth.base + constants.redux.actions.auth.register}`,
     async (registerData, thunkAPI) => {
         try {
@@ -32,7 +32,7 @@ const registerLyfeCycle = createAsyncThunk(
         }
     });
 
-const loginLyfeCycle = createAsyncThunk(
+const loginLifeCycle = createAsyncThunk(
     `${constants.redux.actions.auth.base + constants.redux.actions.auth.login}`,
     async (loginData, thunkAPI) => {
         try {
@@ -51,7 +51,7 @@ const loginLyfeCycle = createAsyncThunk(
         }
     });
 
-const logoutLyfeCycle = createAsyncThunk(
+const logoutLifeCycle = createAsyncThunk(
     `${constants.redux.actions.auth.base + constants.redux.actions.auth.logout}`,
     () => logout())
 
@@ -68,34 +68,34 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerLyfeCycle.pending, (state) => {
+      .addCase(registerLifeCycle.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(registerLyfeCycle.fulfilled, (state, action) => {
+      .addCase(registerLifeCycle.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.user = action.payload;
         state.isSuccess = true;
       })
-      .addCase(registerLyfeCycle.rejected, (state, action) => {
+      .addCase(registerLifeCycle.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload;
         state.user = null
       })
-      .addCase(logoutLyfeCycle.fulfilled, (state) => {
+      .addCase(logoutLifeCycle.fulfilled, (state) => {
         state.user = null
       })
-      .addCase(loginLyfeCycle.pending, (state) => {
+      .addCase(loginLifeCycle.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loginLyfeCycle.fulfilled, (state, action) => {
+      .addCase(loginLifeCycle.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.user = action.payload;
         state.isSuccess = true;
       })
-      .addCase(loginLyfeCycle.rejected, (state, action) => {
+      .addCase(loginLifeCycle.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload;
@@ -107,4 +107,4 @@ const authSlice = createSlice({
 const { reset } = authSlice.actions
 const authReducer = authSlice.reducer
 
-export { registerLyfeCycle, loginLyfeCycle, logoutLyfeCycle, authSlice, reset, authReducer };
+export { registerLifeCycle, loginLifeCycle, logoutLifeCycle, authSlice, reset, authReducer };

@@ -7,8 +7,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import GenericInput from '../components/GenericInput';
 import Spinner from '../components/Spinner';
-import parseJWT from './../utils/parseJWT'
-import { registerLyfeCycle, reset } from '../features/auth/authSlice';
+import { registerLifeCycle, reset } from '../features/auth/authSlice';
 
 const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -43,7 +42,7 @@ const Register = () => {
 
         if (isSuccess || user) {
             toast.success('Login successfull!');
-            navigate(`./../${parseJWT(user.token).user.role}`);
+            navigate('./../company-list');
         }
 
         dispatch(reset());
@@ -52,7 +51,7 @@ const Register = () => {
 
     const registerHandle = (value) => {
         const { confirmPassword, ...registerData } = value;
-        dispatch(registerLyfeCycle(registerData));
+        dispatch(registerLifeCycle(registerData));
     };
 
     if (isLoading) return <Spinner />;

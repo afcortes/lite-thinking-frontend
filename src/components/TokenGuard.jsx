@@ -5,7 +5,7 @@ const TokenGuard = ({ mustBeLogged='true', children }) => {
 
     const user = localStorage.getItem(constants.localStorage.user);
 
-    if (!mustBeLogged && user) return <Navigate to='/' />
+    if (!mustBeLogged && user) return <Navigate to='/company-list' />
 
     if (mustBeLogged && !user) return <Navigate to='login' />;
 
