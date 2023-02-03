@@ -43,9 +43,10 @@ code {
   width: 100vw;
   display: flex;
   justify-content: center;
+  margin-block: 20px;
 }
 
-.login-container {
+.card-container {
   width: 360px;
 }
 
@@ -54,4 +55,13 @@ code {
   color: white;
   background-color: midnightblue;
   margin-bottom: 30px;
+}
+
+.btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.card {
+  width: 360px;
 }

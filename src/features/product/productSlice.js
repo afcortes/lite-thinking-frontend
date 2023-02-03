@@ -13,7 +13,8 @@ const initialState = {
 
 const getProductsLifeCycle = createAsyncThunk('products/getAll', async (company_NIT, thunkAPI) => {
   try {
-    return await getProducts(company_NIT)
+    const products = await getProducts(company_NIT)
+    return products
   } catch (error) {
     if (error instanceof AxiosError) {
       const message =

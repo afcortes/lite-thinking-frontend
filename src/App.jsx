@@ -13,6 +13,7 @@ import CompanyList from './pages/CompanyList';
 import CreateCompany from './pages/CreateCompany';
 import EditCompany from './pages/EditCompany';
 import ProductList from './pages/ProductList';
+import CreateProduct from './pages/CreateProduct';
 
 function App() {
   return (
@@ -69,6 +70,14 @@ function App() {
                 element= {
                   <TokenGuard children={
                     <ProductList/>
+                  } />
+                }
+            ></Route>
+            <Route
+                path='/company/:company_NIT/create-product'
+                element= {
+                  <TokenGuard children={
+                    <CreateProduct/>
                   } />
                 }
             ></Route>

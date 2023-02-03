@@ -59,7 +59,7 @@ const Register = () => {
 
     return (
         <>
-            <div className='card h-60 my-auto login-container'>
+            <div className='card h-60 my-auto card-container'>
                 <FormHeader title={'Register'} />
                 <form onSubmit={handleSubmit(registerHandle)}>
                     <GenericInput register={register('email')} type='email' errors={errors['email']} />

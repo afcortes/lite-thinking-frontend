@@ -24,22 +24,30 @@ const CompanyList = () => {
 
     return (
         <>
-            <RoleGuard role={constants.roles.ADMIN} children={
-                <Link to='/create-company'>
-                    Create company
-                </Link>
-            }/>
-            {companies.length > 0 && (
-                <>
-                <div>
-                    {companies.map((company) => (
-                        <CompanyItem
-                            company={company}
-                        />
-                    ))}
-                </div>
-                </>
-            )}
+        <div className="d-flex flex-column">
+            <div className='mx-auto'>
+                <RoleGuard role={constants.roles.ADMIN} children={
+                    <button className='btn btn-secondary'>
+                        <Link to='/create-company'>
+                            Create company
+                        </Link>
+                    </button>
+                }/>
+            </div>
+            <div>
+                {companies.length > 0 && (
+                    <>
+                    <div>
+                        {companies.map((company) => (
+                            <CompanyItem
+                                company={company}
+                            />
+                        ))}
+                    </div>
+                    </>
+                )}
+            </div>
+        </div>
         </>
     );
 };

@@ -21,19 +21,31 @@ const CompanyItem = ({company}) => {
 
   return (
         <>
-          <h2>{company.name}</h2>
-          <div>
-            {company.NIT}
+          <div className="card my-3">
+            <h2 className="card-header text-center">{company.name}</h2>
+            <div className="card-body">
+              <p className='fs-6'>
+                NIT: {company.NIT}
+              </p>
+              <p className='fs-6'>
+                Address: {company.address}
+              </p>
+              <p className='fs-6'>
+                Phone number: {company.phoneNumber}
+              </p>
+              <div className="row">
+                <div className='col-4'>
+                  <button className='btn btn-primary mx-1 w-100' onClick={handleProducts}>Products</button>
+                </div>
+                <div className='col-4'>
+                  <button className='btn btn-primary mx-1 w-100' onClick={handleEdit}>Edit</button>
+                </div>
+                <div className='col-4'>
+                  <button className='btn btn-primary mx-1 w-100' onClick={handleDelete}>Delete</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            {company.address}
-          </div>
-          <div>
-            {company.phoneNumber}
-          </div>
-          <button onClick={handleProducts}>Products</button>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
         </>
   );
 };

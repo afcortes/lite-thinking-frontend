@@ -52,7 +52,7 @@ const Login = () => {
 
     return (
         <>
-            <div className='card h-50 my-auto login-container'>
+            <div className='card h-50 my-auto card-container'>
                 <FormHeader title={'Login'} />
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <GenericInput register={register('email')} type='email' errors={errors['email']} />
