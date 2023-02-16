@@ -40,4 +40,13 @@ const deleteCompany = async (companyNIT) => {
     return response.data;
 }
 
-export { getCompanies, createCompany, deleteCompany, getCompany, editCompany };
+const downloadPDF = async (companyNIT) => {
+    const response = await companyAPI.get(`/generatePDF/${companyNIT}`);
+    const file = new Blob(
+        [response.data], 
+        {type: 'application/pdf'});
+    const fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+}
+
+export { getCompanies, createCompany, deleteCompany, getCompany, editCompany, downloadPDF };

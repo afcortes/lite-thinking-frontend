@@ -82,7 +82,6 @@ function App() {
                 }
             ></Route>
             <Route path='/not-found' element={<NotFound />} />
-            <Route path='/*' element={<Navigate to='/not-found'/>} />
           </Routes>
         </Router>
       </div>
